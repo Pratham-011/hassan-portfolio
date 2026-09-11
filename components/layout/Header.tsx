@@ -5,7 +5,7 @@ import Link from "next/link";
 import { navLinks, site } from "@/content/site";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
-import { MenuIcon, CloseIcon } from "@/components/ui/icons";
+import { MenuIcon, CloseIcon, LinkedInIcon } from "@/components/ui/icons";
 import { cn } from "@/lib/cn";
 
 /**
@@ -85,6 +85,20 @@ export function Header() {
                 {link.label}
               </Link>
             ))}
+
+            {/* External link, so it's a plain <a> rather than next/link —
+                there's no client-side route to prefetch. `rel="noopener"` is
+                the standard safeguard on any target="_blank" link. */}
+            <a
+              href={site.links.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Hassan Khan on LinkedIn"
+              className="flex size-9 items-center justify-center rounded-full border border-line text-body transition-colors hover:border-ink hover:text-ink"
+            >
+              <LinkedInIcon size={15} />
+            </a>
+
             <Button href={site.links.contact} size="sm">
               Let&apos;s Talk
             </Button>
@@ -126,6 +140,20 @@ export function Header() {
                   {link.label}
                 </Link>
               ))}
+
+              {/* Same LinkedIn destination as the desktop icon, rendered as a
+                  labelled row so it reads like the rest of the mobile menu. */}
+              <a
+                href={site.links.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setMenuOpen(false)}
+                className="flex items-center gap-2.5 border-b border-line py-3.5 text-[15px] font-medium text-body last:border-0"
+              >
+                <LinkedInIcon size={15} />
+                LinkedIn
+              </a>
+
               <Button href={site.links.contact} size="md" className="mt-4 w-full">
                 Let&apos;s Talk
               </Button>

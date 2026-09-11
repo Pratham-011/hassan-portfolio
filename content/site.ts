@@ -10,17 +10,26 @@ export const site = {
   brand: "HASSAN KHAN",
   role: "Digital Marketer & SEO Specialist",
 
-  /** Used for <title> / <meta description> in app/layout.tsx. */
+  /**
+   * Used for <title> / <meta description> / <link rel="canonical"> in
+   * app/layout.tsx.
+   *
+   * `url` is the live address of the site. It's what the canonical tag points
+   * at, so it must be the exact domain you want Google to index — including
+   * the www and the trailing slash.
+   */
   seo: {
-    title: "Hassan Khan — Digital Marketer & SEO Specialist",
+    title: "Hassan Khan | Digital Marketer in Mumbai",
     description:
-      "Driving traffic, leads, and growth with 4+ years of expertise in SEO, Google Ads, Facebook Ads, and AI Search Optimization.",
+      "Hassan Khan is a Digital Marketer & SEO Specialist in Mumbai with 4+ years of experience in SEO, Google Ads, Meta Ads, PPC & AI Search optimization.",
+    url: "https://www.digitalmarketerinmumbai.com/",
   },
 
   /** Where the CTAs point. Swap these for the real links when you have them. */
   links: {
     resume: "/resume.pdf",
     contact: "mailto:k.hassan2791@gmail.com",
+    linkedin: "https://www.linkedin.com/in/hassan-khan-b97b01206/",
   },
 } as const;
 
@@ -50,7 +59,7 @@ export const hero = {
   metrics: ["+4 Years Experience", "SEO", "PPC", "AI SEARCH"],
   photo: {
     src: "/images/hero/hassan.png",
-    alt: "Hassan Khan, digital marketer and SEO specialist",
+    alt: "Hassan Khan Digital Marketing Specialist",
   },
 } as const;
 

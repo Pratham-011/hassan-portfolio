@@ -37,11 +37,28 @@ const plexMono = IBM_Plex_Mono({
  * shared on WhatsApp, LinkedIn or X — worth getting right for a portfolio.
  */
 export const metadata: Metadata = {
+  /**
+   * `metadataBase` is the origin Next resolves every relative metadata URL
+   * against — without it, `alternates.canonical: "/"` can't be turned into an
+   * absolute URL and the canonical tag is dropped.
+   */
+  metadataBase: new URL(site.seo.url),
   title: site.seo.title,
   description: site.seo.description,
+  /**
+   * The canonical tag tells Google which URL is the "real" one, so query
+   * strings and the non-www host don't get indexed as separate pages.
+   */
+  // NOTE: no `alternates.canonical` here. Next normalises any URL it resolves
+  // and drops the trailing slash, so the canonical <link> is written by hand in
+  // the component below to keep the exact URL. Setting it in both places would
+  // emit two canonical tags, which Google ignores entirely.
   openGraph: {
     title: site.seo.title,
     description: site.seo.description,
+    url: site.seo.url,
+    siteName: site.name,
+    locale: "en_IN",
     type: "website",
   },
 };
@@ -49,6 +66,11 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${inter.variable} ${plexMono.variable}`}>
+      <head>
+        {/* Tells Google which URL is the "real" one, so the non-www host and
+            any ?utm= variants don't get indexed as separate pages. */}
+        <link rel="canonical" href={site.seo.url} />
+      </head>
       <body className="min-h-screen bg-white font-sans antialiased">
         <Header />
         {/* <main> marks the primary content — it's the landmark screen readers
