@@ -106,13 +106,13 @@ export const seoCases: SeoCase[] = [
       "HomoeoCare ranks 4 on Google for the keyword Online Homeopathy Doctor",
   },
   {
-    id: "wevaad-mediation-online-india",
+    id: "wevaad-indian-odr-platforms",
     client: "WeVaad",
-    rank: 3,
-    result: "Ranking for Mediation Online India",
+    rank: 6,
+    result: "Ranking for Indian ODR Platforms",
     tag: "SEO WORK",
-    image: "/images/seo/wevaad-mediation-online-india.png",
-    imageAlt: "WeVaad ranks 3 on Google for the keyword Mediation Online India",
+    image: "/images/seo/wevaad-keywords-ranking-6.png",
+    imageAlt: "WeVaad ranks 6 on Google for the keyword Indian ODR Platforms",
   },
   {
     id: "eastman-therminol-54",
