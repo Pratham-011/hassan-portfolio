@@ -67,7 +67,13 @@ export function ToolsSection() {
                 */
                 <>
                   <span className="relative size-5 shrink-0 transition-transform duration-300 group-hover:scale-105">
-                    <Image src={tool.logo} alt="" fill sizes="20px" className="object-contain" />
+                    <Image
+                      src={tool.logo}
+                      alt={`${tool.name} logo`}
+                      fill
+                      sizes="20px"
+                      className="object-contain"
+                    />
                   </span>
                   {/* Wraps to two lines on a narrow chip rather than overflowing. */}
                   <span className="text-[12.5px] font-medium leading-tight text-ink sm:text-[13.5px]">
@@ -90,7 +96,7 @@ export function ToolsSection() {
                 <span className="relative h-7 w-full max-w-[100px] shrink transition-transform duration-300 group-hover:scale-105 sm:h-9 sm:max-w-[130px] lg:max-w-[150px]">
                   <Image
                     src={tool.logo}
-                    alt={tool.name}
+                    alt={`${tool.name} logo`}
                     fill
                     sizes="(max-width: 640px) 100px, 150px"
                     className="object-contain"

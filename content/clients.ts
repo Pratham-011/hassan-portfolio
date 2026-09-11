@@ -6,8 +6,9 @@ export const clientsIntro = {
 } as const;
 
 /**
- * Client list, rendered as a bordered grid: 5 per row on desktop, 3 on tablet,
- * 2 on mobile.
+ * Client list, rendered as a bordered grid: 6 per row on desktop, 3 on tablet,
+ * 2 on mobile. Twelve entries fill two desktop rows exactly — keep the count a
+ * multiple of six and the grid never ends on a short row.
  *
  * Every client points at a logo in /public/images/clients/. The section
  * verifies each file exists at build time and falls back to the plain client
@@ -21,8 +22,10 @@ export const clients: Client[] = [
   { id: "upl", name: "UPL", logo: "/images/clients/upl.jpg" },
   { id: "wevaad", name: "WeVaad", logo: "/images/clients/wevaad.jpg" },
   { id: "ups", name: "UPS", logo: "/images/clients/ups.png" },
-  { id: "homoeocare", name: "Homoeocare", logo: "/images/clients/homoeocare.jpg" },
+  { id: "homoeocare", name: "HomoeoCare", logo: "/images/clients/homoeocare.jpg" },
   { id: "nirmal-seeds", name: "Nirmal Seeds", logo: "/images/clients/nirmal-seeds.png" },
   { id: "banzai-hospitality", name: "Banzai Hospitality", logo: "/images/clients/banzai-hospitality.png" },
   { id: "eastman", name: "Eastman", logo: "/images/clients/eastman.jpg" },
+  { id: "swal", name: "SWAL", logo: "/images/clients/swal.jpg" },
+  { id: "macksofy", name: "Macksofy Technologies", logo: "/images/clients/macksofy.png" },
 ];

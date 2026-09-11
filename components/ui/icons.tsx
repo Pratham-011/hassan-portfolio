@@ -112,3 +112,23 @@ export function CloseIcon({ size = 22, className }: IconProps) {
     </svg>
   );
 }
+
+/**
+ * LinkedIn glyph for the header. Unlike the icons above this one is a solid
+ * shape rather than strokes, so it uses `fill="currentColor"` — it still takes
+ * its colour from the parent the same way.
+ */
+export function LinkedInIcon({ size = 18, className }: IconProps) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      aria-hidden="true"
+      className={className}
+    >
+      <path d="M4.98 3.5A2.5 2.5 0 1 1 0 3.5a2.5 2.5 0 0 1 4.98 0ZM.24 8.25h4.5V24H.24V8.25Zm7.86 0h4.31v2.15h.06c.6-1.14 2.07-2.34 4.26-2.34 4.56 0 5.4 3 5.4 6.9V24h-4.5v-7.94c0-1.9-.03-4.33-2.64-4.33-2.64 0-3.05 2.06-3.05 4.19V24H8.1V8.25Z" />
+    </svg>
+  );
+}

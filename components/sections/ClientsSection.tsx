@@ -48,7 +48,9 @@ export function ClientsSection() {
       <div className="flex flex-col gap-7">
         <Eyebrow>{clientsIntro.eyebrow}</Eyebrow>
 
-        <ul className="grid grid-cols-2 gap-px overflow-hidden rounded-[14px] border border-line bg-line sm:grid-cols-3 lg:grid-cols-5">
+        {/* 6 per row on desktop: with 12 clients that's two complete rows, so
+            the grid never ends on a short, ragged line. */}
+        <ul className="grid grid-cols-2 gap-px overflow-hidden rounded-[14px] border border-line bg-line sm:grid-cols-3 lg:grid-cols-6">
           {clients.map((client) => (
             // `group` lets the image react to a hover anywhere in the cell,
             // not just directly on the logo itself.
@@ -63,10 +65,14 @@ export function ClientsSection() {
                 // lines up), and the logo scales down to fit inside it while
                 // keeping its own aspect ratio. Nothing is ever stretched or
                 // cropped.
-                <div className="relative h-14 w-[128px] transition-transform duration-300 group-hover:scale-105">
+                // `w-full max-w-[128px]` rather than a fixed 128px: at six
+                // columns a cell is only ~117px wide at the lg breakpoint, so
+                // a fixed box would overflow its own padding. The box still
+                // caps at the design's 128px once there's room.
+                <div className="relative h-14 w-full max-w-[128px] transition-transform duration-300 group-hover:scale-105">
                   <Image
                     src={client.logo}
-                    alt={client.name}
+                    alt={`${client.name} logo`}
                     fill
                     sizes="128px"
                     className="object-contain"
