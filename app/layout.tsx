@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, IBM_Plex_Mono } from "next/font/google";
 import { site } from "@/content/site";
+import { jsonLd } from "@/content/schema";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import "./globals.css";
@@ -70,6 +71,16 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         {/* Tells Google which URL is the "real" one, so the non-www host and
             any ?utm= variants don't get indexed as separate pages. */}
         <link rel="canonical" href={site.seo.url} />
+
+        {/* Structured data (content/schema.ts). `dangerouslySetInnerHTML` is
+            the only way to put raw JSON inside a <script> from JSX — React
+            would otherwise escape it into unparseable text. It's safe here
+            because the value is a static object from our own source, never
+            user input. */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
       </head>
       <body className="min-h-screen bg-white font-sans antialiased">
         <Header />
