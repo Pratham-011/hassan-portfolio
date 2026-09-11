@@ -1,0 +1,80 @@
+@import "tailwindcss";
+
+/* ============================================================================
+   DESIGN TOKENS
+   ----------------------------------------------------------------------------
+   Tailwind v4 has no tailwind.config.js. Anything declared inside @theme
+   becomes a real Tailwind utility. So `--color-brand` below automatically
+   creates `bg-brand`, `text-brand`, `border-brand`, etc.
+
+   This is the single source of truth for the design. Change a hex here and it
+   updates everywhere on the site — never hardcode a hex in a component.
+   ========================================================================== */
+@theme {
+  /* --- Light surfaces & text (from the Figma light sections) --- */
+  --color-ink: #0e1220;        /* headings, primary text */
+  --color-body: #4b5163;       /* paragraph text */
+  --color-muted: #828b99;      /* eyebrows, captions, meta */
+  --color-line: #e4e7ee;       /* all borders & dividers */
+  --color-surface: #f7f8fa;    /* off-white section background */
+
+  /* --- Brand gradient (buttons, active nav, skill checkmarks) --- */
+  --color-brand: #3b5bff;
+  --color-brand-alt: #8b5cf6;
+
+  /* --- Small status dots: eyebrow markers and tool-chip category dots --- */
+  --color-dot-red: #ef4444;
+
+  /* --- SEO tag --- */
+  --color-seo: #16a34a;
+  --color-seo-soft: #e0f2e5;
+
+  /* --- Dark "PPC Work" section --- */
+  --color-night: #11131f;        /* section background */
+  --color-night-card: #161925;   /* card background */
+  --color-night-muted: #99a1b2;  /* footer caption text */
+
+  /* --- Per-campaign accents, referenced by content/ppc-work.ts --- */
+  --color-accent-green: #4ade80;
+  --color-accent-orange: #f97316;
+  --color-accent-yellow: #facc15;
+  --color-accent-teal: #0d9488;
+  --color-accent-sky: #38bdf8;
+
+  /* --- Fonts. The var() values are injected by next/font in app/layout.tsx.
+         This wires them to `font-sans` and `font-mono` utilities. --- */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, monospace;
+
+  /* --- Shadows lifted straight from the Figma layer effects --- */
+  --shadow-card: 0 16px 32px -16px rgb(15 18 31 / 0.06);
+  --shadow-nav: 0 8px 10px 0 rgb(15 18 31 / 0.06);
+  --shadow-photo: 0 24px 48px -12px rgb(15 18 31 / 0.16);
+  --shadow-badge: 0 8px 20px 0 rgb(15 18 31 / 0.22);
+}
+
+/* ============================================================================
+   BASE STYLES
+   ========================================================================== */
+html {
+  scroll-behavior: smooth;
+  /* Stops the sticky header from covering a section when you click a nav link */
+  scroll-padding-top: 88px;
+}
+
+body {
+  background-color: var(--color-white);
+  color: var(--color-body);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Hide the scrollbar on the carousel tracks while keeping them scrollable.
+   Used by components/ui/CardCarousel.tsx. */
+@utility no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
