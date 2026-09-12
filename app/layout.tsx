@@ -68,6 +68,30 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${inter.variable} ${plexMono.variable}`}>
       <head>
+        {/*
+          GOOGLE TAG MANAGER — the container snippet, verbatim from GTM.
+
+          Deliberately a plain <script> rather than next/script. A next/script
+          with strategy="beforeInteractive" doesn't emit the code into the HTML;
+          it queues it on `self.__next_s` for Next's own runtime to execute once
+          that runtime has loaded. This version is written into <head> as-is, so
+          the browser runs it the moment it parses that line — which is what
+          Google means by "as high in the <head> as possible", and it keeps
+          working even if Next's JS never loads.
+
+          GTM's snippet only inserts an async <script> of its own, so being
+          inline here costs nothing in render-blocking time.
+        */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','${site.analytics.gtmId}');`,
+          }}
+        />
+
         {/* Tells Google which URL is the "real" one, so the non-www host and
             any ?utm= variants don't get indexed as separate pages. */}
         <link rel="canonical" href={site.seo.url} />
@@ -83,6 +107,19 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         />
       </head>
       <body className="min-h-screen bg-white font-sans antialiased">
+        {/* GTM's no-JavaScript fallback. It has to be the first thing inside
+            <body>, and it's a plain <noscript> rather than a next/script
+            because the whole point is that it works without JS. */}
+        <noscript>
+          <iframe
+            src={`https://www.googletagmanager.com/ns.html?id=${site.analytics.gtmId}`}
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+            title="Google Tag Manager"
+          />
+        </noscript>
+
         <Header />
         {/* <main> marks the primary content — it's the landmark screen readers
             and "skip to content" tools jump to. */}
