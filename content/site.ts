@@ -25,6 +25,15 @@ export const site = {
     url: "https://www.digitalmarketerinmumbai.com/",
   },
 
+  /**
+   * Google Tag Manager container. Every tag — GA4, Ads conversions, pixels —
+   * is configured inside GTM itself, so this id is the only thing the site
+   * needs to know. Set it to an empty string to switch tracking off entirely.
+   */
+  analytics: {
+    gtmId: "GTM-M4XC25V4",
+  },
+
   /** Where the CTAs point. Swap these for the real links when you have them. */
   links: {
     resume: "/resume.pdf",
